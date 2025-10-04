@@ -1,0 +1,10 @@
+{% extends "admin/login.html" %}
+
+{% block content %}
+    {% if form.errors %}
+        <p style="color: red; font-weight: bold;">
+            Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo (Mensaje personalizado).
+        </p>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}
