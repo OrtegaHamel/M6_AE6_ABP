@@ -2,8 +2,7 @@
 
 {% block content %}
     <h1>Bienvenido a la Plataforma de Gestión de Productos</h1>
-    <p>Selecciona una opción del menú para continuar.</p>
-    <ul>
-        <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
-    </ul>
+        <a href="{% url 'login' %}" class="btn btn-success">Iniciar sesión</a>
+       
 {% endblock %}
+

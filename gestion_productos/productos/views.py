@@ -4,17 +4,25 @@ from .models import Producto
 from .forms import ProductoForm
 
 @login_required
-@permission_required('productos.add_producto', login_url='denegado')
+@permission_required('productos.view_producto', login_url='denegado')
 def lista_productos(request):
     productos = Producto.objects.all()
+    form = ProductoForm()  # Siempre muestra el formulario
+
     if request.method == 'POST':
+        # Verifica si el usuario tiene permiso para agregar productos
+        if not request.user.has_perm('productos.add_producto'):
+            return redirect('denegado')  # Redirige a acceso denegado si no tiene permiso
+
         form = ProductoForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('lista_productos')
-    else:
-        form = ProductoForm()
-    return render(request, 'productos/lista_productos.html', {'productos': productos, 'form': form})
+
+    return render(request, 'productos/lista_productos.html', {
+        'productos': productos,
+        'form': form
+    })
 
 @login_required
 @permission_required('productos.delete_producto', login_url='denegado')
@@ -25,5 +33,4 @@ def eliminar_producto(request, pk):
         return redirect('lista_productos')
     return render(request, 'productos/confirmar_eliminar.html', {'producto': producto})
 
-def home(request):
-    return render(request, 'home.html')
+
