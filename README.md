@@ -48,6 +48,7 @@ Accede en: http://127.0.0.1:8000
 
 ## Estructura del proyecto
 
+```bash
 M6_AE6_ABP/
 │
 ├── gestion_productos/          # Proyecto principal
@@ -74,6 +75,7 @@ M6_AE6_ABP/
 │
 └── manage.py                    # Script de gestión de Django
 
+```
 
 
 ## Usuarios de prueba
