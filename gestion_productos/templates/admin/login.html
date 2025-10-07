@@ -2,9 +2,10 @@
 
 {% block content %}
     {% if form.errors %}
-        <p style="color: red; font-weight: bold;">
-            Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo (Mensaje personalizado).
+        <p class="error-message">
+            <strong>Error:</strong> Usuario o contraseña incorrectos. Inténtalo de nuevo.
         </p>
     {% endif %}
     {{ block.super }}
 {% endblock %}
+

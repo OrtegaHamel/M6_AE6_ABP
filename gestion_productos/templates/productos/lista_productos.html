@@ -1,0 +1,33 @@
+<!-- templates/productos/lista_productos.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Lista de Productos</h1>
+
+<!-- Botón para cerrar sesión -->
+<div style="text-align: right; margin-bottom: 20px;">
+    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+    </form>
+</div>
+
+<!-- Formulario para agregar productos -->
+<h2>Agregar Nuevo Producto</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Agregar Producto</button>
+</form>
+
+<!-- Lista de productos -->
+<h2>Productos Existentes</h2>
+<ul>
+    {% for producto in productos %}
+    <li>
+        {{ producto.nombre }} - ${{ producto.precio }} (Stock: {{ producto.stock }})
+        <a href="{% url 'eliminar_producto' producto.pk %}">Eliminar</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
